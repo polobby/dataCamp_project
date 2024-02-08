@@ -31,12 +31,11 @@ score_types = [
     rw.score_types.ROCAUC(name='auc'),
     rw.score_types.BalancedAccuracy(name='balanced acc'),
     rw.score_types.Accuracy(name="acc", precision=3)
-    # rw.score_types.NegativeLogLikelihood(name='nll'),
     ]
 
 # Construction des données
 _target_column_name = 'classe_consommation_energie'
-_ignore_column_names = ['id',]  # TO DO
+_ignore_column_names = ['id']  # TO DO
 
 
 def _read_data(path, f_name):
