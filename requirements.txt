@@ -4,7 +4,4 @@ scikit-learn>=0.22
 missingno
 matplotlib
 seaborn
-joblib
-osfclient
-ipywidgets
 ramp-workflow==0.6.0
