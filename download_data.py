@@ -13,3 +13,5 @@ test.to_csv('data/public/test.csv', index=False)
 train, test = train_test_split(private, test_size=0.3, random_state=42)
 train.to_csv('data/train.csv', index=False)
 test.to_csv('data/test.csv', index=False)
+
+# TODO : Create the folders to avoid bugs in cold start.

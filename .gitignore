@@ -1,4 +1,5 @@
 ### data/raw ###
-data/td001_dpe-clean.csv
+data/
 ### ignoring __pycache__ ###
 __pycache__
+td001_dpe-clean.csv
