@@ -10,26 +10,32 @@ class UniformingdType(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X, y=None):
+        X = X.astype(object)
+        return X
+
+class toStr(BaseEstimator, TransformerMixin):
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
         X = X.astype(str)
         return X
 
+
 class Classifier(BaseEstimator):
     def __init__(self):
-        # Definir les imputers et les scalers.
         # Definir les imputers et les scalers.
         qual_imputer = SimpleImputer(strategy="most_frequent")
         quant_imputer = SimpleImputer(strategy="mean")
         scaler = StandardScaler()
 
         # Transformations.
-
-        # Transformations.
         qual_transform = Pipeline(steps=[
             ("previus", UniformingdType()),
             ("imputer", qual_imputer),
+            ("toStr", toStr()),
             ("encoder", OneHotEncoder(handle_unknown='ignore'))
         ])
-
 
         quant_transform = Pipeline(steps=[
             ("imputer", quant_imputer),
@@ -38,31 +44,16 @@ class Classifier(BaseEstimator):
 
         # ColumnTransformer para apliquer des transformations
         # differentes a les columnes.
-
-        # ColumnTransformer para apliquer des transformations
-        # differentes a les columnes.
         self.transformer = ColumnTransformer(
             transformers=[
-                ("qual", qual_transform, ['code_postal', 'code_insee_commune']),  
-                ("quant", quant_transform, ['portee_dpe_batiment', 'shon', 'surface_utile',
-                                            'surface_thermique_parties_communes', 'en_souterrain', 'en_surface',
-                                            'nombre_niveaux', 'nombre_circulations_verticales',
-                                            'type_vitrage_verriere', 'surface_baies_orientees_nord',
-                                            'surface_baies_orientees_est_ouest', 'surface_baies_orientees_sud',
-                                            'surface_planchers_hauts_deperditifs',
-                                            'surface_planchers_bas_deperditifs',
-                                            'surface_parois_verticales_opaques_deperditives', 'etat_avancement',
-                                            'dpe_vierge', 'est_efface']),  
+                ("qual", qual_transform, [19, 20]),  
+                ("quant", quant_transform, [23, 24, 25, 26, 27, 28, 29, 30, 34, 37, 38, 39, 40, 41, 42, 43, 45, 46]),  
             ],
-            remainder='drop'
+            remainder='drop'  
         )
 
         # Definir le model de clasification.
-
-        # Definir le model de clasification.
         self.model = LogisticRegression(max_iter=1000, random_state=42)
-
-        # Construction du pipeline complet.
 
         # Construction du pipeline complet.
         self.pipe = make_pipeline(self.transformer, self.model)

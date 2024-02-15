@@ -2,7 +2,7 @@
 import os
 import pandas as pd
 import rampwf as rw
-from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.model_selection import ShuffleSplit
 
 # Titre
 problem_title = "Energetic class prediction for housing in Paris"
@@ -10,6 +10,7 @@ _prediction_label_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 # Correspondance entre catégoriel et int8
 int_to_cat = {
+    -1: "H",  # "H" pour "Hors catégorie"
     0: "A",
     1: "B",
     2: "C",
@@ -28,7 +29,6 @@ Predictions = rw.prediction_types.make_multiclass(label_names=_prediction_label_
 workflow = rw.workflows.Classifier()
 
 score_types = [
-    rw.score_types.ROCAUC(name='auc'),
     rw.score_types.BalancedAccuracy(name='balanced acc'),
     rw.score_types.Accuracy(name="acc", precision=3)
     ]
@@ -59,7 +59,9 @@ def _read_data(path, f_name):
 
     y_array = data[_target_column_name]
     y_array = y_array.map(cat_to_int).fillna(-1).astype("int8").values
-    return X_df, y_array
+    # X_df as an np.array
+    X = X_df.values
+    return X, y_array
 
 
 def get_train_data(path='.'):
@@ -73,5 +75,5 @@ def get_test_data(path='.'):
 
 
 def get_cv(X, y):
-    cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
+    cv = ShuffleSplit(n_splits=3, test_size=0.2, random_state=42)
     return cv.split(X, y)
