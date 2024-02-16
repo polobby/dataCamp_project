@@ -1,8 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
 import gzip
 import os
+
 with gzip.open('td001_dpe-clean.csv.gz', 'rt') as csv_file:
     csv_data = csv_file.read()
     with open('td001_dpe-clean.csv', 'wt') as out_file:
