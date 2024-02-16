@@ -5,6 +5,7 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.base import BaseEstimator, TransformerMixin
 
+
 class UniformingdType(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
@@ -12,6 +13,7 @@ class UniformingdType(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         X = X.astype(object)
         return X
+
 
 class toStr(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
@@ -47,7 +49,9 @@ class Classifier(BaseEstimator):
         self.transformer = ColumnTransformer(
             transformers=[
                 ("qual", qual_transform, [19, 20]),
-                ("quant", quant_transform, [23, 24, 25, 26, 27, 28, 29, 30, 34, 37, 38, 39, 40, 41, 42, 43, 45, 46]),  
+                ("quant", quant_transform, [23, 24, 25, 26, 27,
+                                            28, 29, 30, 34, 37, 38,
+                                            39, 40, 41, 42, 43, 45, 46]),
             ],
             remainder='drop'
         )
