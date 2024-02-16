@@ -3,6 +3,9 @@
 __pycache__
 ### ignoring created files ###
 data/public/
+#
 data/raw/td001_dpe-clean.csv
+#
 data/test.csv
+#
 data/train.csv
