@@ -46,10 +46,10 @@ class Classifier(BaseEstimator):
         # differentes a les columnes.
         self.transformer = ColumnTransformer(
             transformers=[
-                ("qual", qual_transform, [19, 20]),  
+                ("qual", qual_transform, [19, 20]),
                 ("quant", quant_transform, [23, 24, 25, 26, 27, 28, 29, 30, 34, 37, 38, 39, 40, 41, 42, 43, 45, 46]),  
             ],
-            remainder='drop'  
+            remainder='drop'
         )
 
         # Definir le model de clasification.
