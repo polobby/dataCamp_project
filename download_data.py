@@ -16,15 +16,7 @@ data = pd.read_csv('data/raw/td001_dpe-clean.csv', header=0)
 # Split the data into a training and test sample
 private, public = train_test_split(data, test_size=0.3, random_state=42)
 
-if os.path.exists(OUT_DIR):
-    shutil.rmtree(OUT_DIR)
-os.mkdir(OUT_DIR)
-
 # Save the data
-if os.path.exists('data'):
-    shutil.rmtree('data')
-os.mkdir('data')
-
 if os.path.exists('data/public'):
     shutil.rmtree('data/public')
 os.mkdir('data/public')

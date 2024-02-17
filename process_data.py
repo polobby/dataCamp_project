@@ -45,10 +45,6 @@ data = pd.read_csv('td001_dpe-clean.csv.gz', compression='gzip', header=0, sep='
 # date de reception dpe à garder comme datetime
 
 
-
-
-
-
 # Split the data into a training and test se
 public, private = train_test_split(data, test_size=0.3, random_state=42)
 
