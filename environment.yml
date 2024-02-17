@@ -1,0 +1,30 @@
+name: DPE-75
+channels:
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1
+  - _openmp_mutex=5.1
+  - openssl=1.1.1w
+  - pip=23.3.1
+  - python=3.9.0
+  - readline=8.2
+  - setuptools=68.2.2
+  - sqlite=3.41.2
+  - tk=8.6.12
+  - wheel=0.41.2
+  - xz=5.4.5
+  - zlib=1.2.13
+  - pip:
+      - click==8.1.7
+      - numpy
+      - pandas
+      - scikit-learn>=1.4.0
+      - missingno
+      - matplotlib
+      - seaborn
+      - ramp-workflow==0.6.0
+      - xgboost
+      - lightgbm
+      - catboost
+      - optuna
+
