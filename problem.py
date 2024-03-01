@@ -10,7 +10,6 @@ _prediction_label_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 # Correspondance entre catégoriel et int8
 int_to_cat = {
-    -1: "H",  # "H" pour "Hors catégorie"
     0: "A",
     1: "B",
     2: "C",
